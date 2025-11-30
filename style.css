@@ -70,6 +70,7 @@
       --success: #10B981;
       --failure: #EF4444;
       --card-background: #273F4F;
+      --card-image-background: oklch(0.81 0.04 221.93);
       --card-github: oklch(0.40 0.05 250);
       --card-github-hover: oklch(0.48 0.05 250);
       --edutoggle :#0078ff;
@@ -124,6 +125,7 @@
       --success: #047857;
       --failure: #B91C1C;
       --card-background: #99bfeb;
+      --card-image-background: oklch(0.19 0.04 221.93);
       --card-github: oklch(61.969% 0.10199 253.115);
       --card-github-hover: oklch(69.969% 0.10199 253.115);
       --edutoggle :#3399FF;
@@ -616,6 +618,8 @@
       text-align: left;
       display: grid;
       border-radius: 5%;
+      border-top-left-radius: 10%;
+      border-top-right-radius: 10%;
       grid-template-rows: auto 1fr auto;
       gap: 1em;
       width: 100%;
@@ -629,12 +633,23 @@
       box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
     }
 
-    .card img {
-      width: 100%;
-      height: auto;
-      object-fit: cover;
-      display: block;
-      grid-area: card-image;
+    .card-image {
+        background: var(--card-image-background);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 30vh;
+        width: 100%;
+        grid-area: card-image;
+        border-radius: 10%;
+    }
+
+    .card-image img{
+        height: 100%;
+        width: inherit;
+        object-fit: contain;
+        display: block;
+        border-radius: inherit;
     }
 
     .card-content {
@@ -664,16 +679,22 @@
       font-size: clamp(0.8rem, 1vw, 1rem);
       text-decoration: none;
       color: var(--text);
+      font-weight: bolder;
       background: var(--card-github);
       padding: 8px 14px;
       border-radius: 10px;
       display: inline-flex;
-      align-items: center;
+      width: fit-content;
+      align-self: center;
+      justify-self: center;
       gap: 8px;
-      font-weight: 500;
       transition: background 0.3s ease;
       margin-bottom: 14px;
       grid-area: card-link;
+    }
+
+    .github-link svg {
+      fill: var(--text);
     }
 
     .github-link:hover {
